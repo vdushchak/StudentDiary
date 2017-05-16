@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:padding="16dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="109dp"
+            android:background="#FDECB9"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/homework_task"
+                android:gravity="center"
+                style="@style/Styles"
+                android:textSize="18dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:width="292dp"
+                android:text="Ex.12 p. 124; Ex 13, p.125"/>
+
+            <CheckBox
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+        </LinearLayout>
+</LinearLayout>

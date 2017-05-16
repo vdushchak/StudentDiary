@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FDECB9">
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/edit_subject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="12dp"
+        android:clickable="true"
+        app:backgroundTint="@android:color/holo_green_dark"
+        app:fabSize="mini"
+        app:srcCompat="@drawable/edit" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/edit_homework"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/edit_subject"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="28dp"
+        android:layout_toEndOf="@+id/edit_subject"
+        android:clickable="true"
+        app:backgroundTint="@android:color/holo_green_dark"
+        app:srcCompat="@drawable/homework" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/edit_marks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/edit_subject"
+        android:layout_below="@+id/edit_homework"
+        android:layout_marginStart="58dp"
+        android:clickable="true"
+        android:scaleType="centerCrop"
+        app:backgroundTint="@android:color/holo_green_dark"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/evaluation" />
+
+</RelativeLayout>
