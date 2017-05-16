@@ -24,15 +24,19 @@ public class Subject  extends Model{
     private int subject_number;
 
     public Subject() {
+        super();
     }
 
 
+
     public Subject(String subject_name, String subject_teacher, String subject_room, String day, int subject_number) {
+        super();
         this.subject_name = subject_name;
         this.subject_teacher = subject_teacher;
         this.subject_room = subject_room;
         this.day = day;
         this.subject_number = subject_number;
+
     }
 
     public String getDay() {

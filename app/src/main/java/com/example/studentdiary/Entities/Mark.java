@@ -27,9 +27,11 @@ public class Mark extends Model {
     }
 
     public Mark() {
+        super();
     }
 
     public Mark(Date date, String mark, Subject subject) {
+        super();
         this.date = date;
         this.mark = mark;
         this.subject = subject;

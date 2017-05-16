@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.example.studentdiary.Entities.Subject;
 import com.example.studentdiary.R;
 
+
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;
 
@@ -18,7 +19,7 @@ import org.androidannotations.annotations.ViewById;
 public class SubjectHolder extends LinearLayout {
 
     @ViewById
-    TextView lesson_number;
+    TextView vLessonNumber;
 
     @ViewById
     TextView lesson_name;
@@ -29,14 +30,29 @@ public class SubjectHolder extends LinearLayout {
     @ViewById
     TextView lesson_room;
 
+    @ViewById
+    LinearLayout subject_layout;
+
     public SubjectHolder(Context context) {
         super(context);
     }
 
-    public void bind(Subject subject) {
-        lesson_number.setText(subject.getSubject_number());
+    public void bind(Subject subject, int pos, OnClickListener listener) {
+        vLessonNumber.setText(subject.getSubject_number()+"");
         lesson_name.setText(subject.getSubject_name());
         lesson_room.setText(subject.getSubject_room());
         lesson_teacher.setText(subject.getSubject_teacher());
+
+        subject_layout.setTag(pos);
+        vLessonNumber.setTag(pos);
+        lesson_name.setTag(pos);
+        lesson_teacher.setTag(pos);
+        lesson_room.setTag(pos);
+
+        subject_layout.setOnClickListener(listener);
+        vLessonNumber.setOnClickListener(listener);
+        lesson_name.setOnClickListener(listener);
+        lesson_teacher.setOnClickListener(listener);
+        lesson_room.setOnClickListener(listener);
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_mark_layout"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:weightSum="1"
@@ -11,13 +12,15 @@
         android:layout_weight="0.7"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:textSize="24sp"/>
+        android:textSize="24sp"
+        android:text="text"/>
     <TextView
         android:id="@+id/mark"
         android:layout_width="0dp"
         android:layout_weight="0.3"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:textSize="24sp"/>
+        android:textSize="24sp"
+        android:text="text"/>
 
 </LinearLayout>

@@ -17,9 +17,11 @@ public class Homework extends Model {
     private Subject subject;
 
     public Homework() {
+        super();
     }
 
     public Homework(String task, boolean status, Subject subject) {
+        super();
         this.task = task;
         this.status = status;
         this.subject = subject;

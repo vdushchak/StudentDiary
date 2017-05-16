@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FDECB9"
 
-    tools:context="com.example.studentdiary.MainActivity">
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +25,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/Monday"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:name="com.example.studentdiary.ScheduleFragment"
+                tools:layout="@layout/schedule">
 
 
             </FrameLayout>
@@ -36,7 +38,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:padding="10dip">
+                android:padding="10dip"
+                android:name="com.example.studentdiary.ScheduleFragment"
+                tools:layout="@layout/schedule">
             </FrameLayout>
         </LinearLayout>
 
@@ -46,23 +50,27 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <LinearLayout
+            <FrameLayout
                 android:id="@+id/Wednesday"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:padding="10dip">
-            </LinearLayout>
+                android:padding="10dip"
+                android:name="com.example.studentdiary.ScheduleFragment"
+                tools:layout="@layout/schedule">
+            </FrameLayout>
 
-            <LinearLayout
+            <FrameLayout
                 android:id="@+id/Thursday"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:padding="10dip">
-            </LinearLayout>
+                android:padding="10dip"
+                android:name="com.example.studentdiary.ScheduleFragment"
+                tools:layout="@layout/schedule">
+            </FrameLayout>
         </LinearLayout>
 
 
@@ -72,23 +80,27 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="0dp"
                 android:id="@+id/Friday"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:padding="10dip">
-            </LinearLayout>
+                android:padding="10dip"
+                android:name="com.example.studentdiary.ScheduleFragment"
+                tools:layout="@layout/schedule">
+            </FrameLayout>
 
-            <LinearLayout
+            <FrameLayout
                 android:id="@+id/Saturday"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:padding="10dip">
-            </LinearLayout>
+                android:padding="10dip"
+                android:name="com.example.studentdiary.ScheduleFragment"
+                tools:layout="@layout/schedule">
+            </FrameLayout>
         </LinearLayout>
     </LinearLayout>
 

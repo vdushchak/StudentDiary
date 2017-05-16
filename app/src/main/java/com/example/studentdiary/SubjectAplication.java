@@ -1,6 +1,7 @@
 package com.example.studentdiary;
 
-import android.app.Application;
+
+import com.activeandroid.app.Application;
 
 /**
  * Created by Виталина on 09.05.2017.
