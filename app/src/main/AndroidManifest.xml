@@ -20,6 +20,7 @@
             com.example.studentdiary.Entities.Homework" />
         <activity android:name=".SheduleActivity_"/>
         <activity android:name=".MarkActivity_"/>
+        <activity android:name=".HomeworkActivity_"/>
         <activity android:name=".MainActivity_">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

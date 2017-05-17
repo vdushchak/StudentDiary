@@ -32,8 +32,6 @@ public class SheduleActivity extends AppCompatActivity{
     String day;
     @ViewById
     RecyclerView schedule;
-    @ViewById
-    FloatingActionButton addSubject;
     @Bean
     SubjectAdapter adapter;
     @AfterViews
@@ -45,37 +43,11 @@ public class SheduleActivity extends AppCompatActivity{
         schedule.setAdapter(adapter);
         adapter.setList(daySchedule);
         Snackbar.make(schedule, day ,Snackbar.LENGTH_SHORT).show();
-        addSubject.setVisibility(View.VISIBLE);
     }
 
-    @Click(R.id.addSubject)
-    public void createSubject(){
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-// ...Irrelevant code for customizing the buttons and title
-        LayoutInflater inflater = this.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.edit_subject, null);
-        dialogBuilder.setView(dialogView);
-        dialogBuilder.setNeutralButton("Delete", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-        dialogBuilder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-
-        AlertDialog alertDialog = dialogBuilder.create();
-        alertDialog.show();
-        Snackbar.make(schedule,"New Subject",Snackbar.LENGTH_SHORT).show();
-    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        addSubject.setVisibility(View.GONE);
     }
 }

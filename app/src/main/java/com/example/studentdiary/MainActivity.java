@@ -4,6 +4,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -34,4 +35,5 @@ public class MainActivity extends AppCompatActivity {
                .replace(R.id.Saturday,ScheduleFragment_.builder().arg("day","Saturday").build())
                .commit();
    }
+
 }

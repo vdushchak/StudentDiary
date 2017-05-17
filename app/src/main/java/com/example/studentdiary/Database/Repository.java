@@ -12,7 +12,14 @@ import java.util.List;
 
 public class Repository {
     public static List<Subject> getSchedule(String day){
-       // return new Select().from(Subject.class).where("day=?",day).execute();
-        return  new ArrayList<Subject>();
+        return new Select().from(Subject.class).where("day=?",day).execute();
+    }
+    public static void saveOrUpdate(Subject subject){
+        Subject s = new Select().from(Subject.class).where("day=?",subject.getDay())
+                .where("subject_number=?",subject.getSubject_number()).executeSingle();
+         if (s!=null) {
+             s.delete();
+         }
+         subject.save();
     }
 }

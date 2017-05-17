@@ -42,4 +42,5 @@ dependencies {
     annotationProcessor "org.androidannotations:androidannotations:$AASnapshotVersion"
     compile "org.androidannotations:androidannotations-api:$AASnapshotVersion"
     compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
+    compile 'com.android.support:recyclerview-v7:25.2.0'
 }

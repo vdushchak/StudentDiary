@@ -4,30 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FDECB9"
-
-    >
+    android:background="#FDECB9">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="1">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:weightSum="2"
+            android:layout_weight="0.33"
             android:orientation="horizontal">
 
             <FrameLayout
-
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/Monday"
                 android:padding="10dp"
-                android:name="com.example.studentdiary.ScheduleFragment"
-                tools:layout="@layout/schedule">
+                android:name="com.example.studentdiary.ScheduleFragment">
 
 
             </FrameLayout>
@@ -46,8 +44,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:weightSum="2"
+            android:layout_weight="0.33"
             android:orientation="horizontal">
 
             <FrameLayout
@@ -56,7 +55,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:padding="10dip"
+                android:padding="10dp"
                 android:name="com.example.studentdiary.ScheduleFragment"
                 tools:layout="@layout/schedule">
             </FrameLayout>
@@ -76,8 +75,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:weightSum="2"
+            android:layout_weight="0.33"
             android:orientation="horizontal">
 
             <FrameLayout
