@@ -64,9 +64,10 @@ public class HomeworkAdapter extends RecyclerViewAdapterBase<Homework,HomeworkHo
     }
     public void setItems(List<Homework> homeworks){
         items = homeworks;
-        if (items.isEmpty()){
-            items.add(new Homework("task", true,new Subject()));
-        }
+        notifyDataSetChanged();
+    }
+    public void addItem(Homework homework){
+        items.add(homework);
         notifyDataSetChanged();
     }
 

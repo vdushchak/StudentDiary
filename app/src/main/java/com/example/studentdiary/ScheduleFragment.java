@@ -26,6 +26,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
 
@@ -42,30 +43,25 @@ public class ScheduleFragment extends Fragment {
     RecyclerView schedule;
     @Bean
     SubjectAdapter adapter;
+    @FragmentArg
+    boolean clickableContent = false;
     @AfterViews
     public void getSchedule(){
         List<Subject> daySchedule = Repository.getSchedule(day);
-        adapter.setClickable(false);
+        adapter.setClickable(clickableContent);
         adapter.setDay(day);
         schedule.setLayoutManager(new LinearLayoutManager(getActivity()));
         schedule.setAdapter(adapter);
         adapter.setList(daySchedule);
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
                 //do nothing, we only care about swiping
                 return false;
             }
-
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
-                if(swipeDir == ItemTouchHelper.RIGHT){
-                    Toast.makeText(getContext(), "Swiped right", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(getContext(), "Swiped left", Toast.LENGTH_SHORT).show();
-                }
-
+               adapter.deleteItem(viewHolder.getAdapterPosition());
             }
         }).attachToRecyclerView(schedule);
     }
