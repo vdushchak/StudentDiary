@@ -2,15 +2,13 @@ package com.example.studentdiary.Adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.CheckBox;
 
 import com.example.studentdiary.Entities.Homework;
-import com.example.studentdiary.Entities.Subject;
 import com.example.studentdiary.R;
 
 import org.androidannotations.annotations.EBean;
@@ -48,6 +46,12 @@ public class HomeworkAdapter extends RecyclerViewAdapterBase<Homework,HomeworkHo
 
             AlertDialog alertDialog = dialogBuilder.create();
             alertDialog.show();
+        } else {
+            int pos =(int) v.getTag();
+            Homework homework = items.get(pos);
+            homework.setStatus(((CheckBox)v).isChecked());
+            homework.save();
+            notifyItemChanged(pos);
         }
     }
 
@@ -69,6 +73,11 @@ public class HomeworkAdapter extends RecyclerViewAdapterBase<Homework,HomeworkHo
     public void addItem(Homework homework){
         items.add(homework);
         notifyDataSetChanged();
+    }
+    public void deleteItem(int pos){
+        Homework homework = items.get(pos);
+        items.remove(pos);
+        homework.delete();
     }
 
 }

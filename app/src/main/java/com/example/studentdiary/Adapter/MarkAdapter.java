@@ -6,15 +6,16 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
+import android.widget.EditText;
 
 import com.example.studentdiary.Entities.Mark;
-import com.example.studentdiary.Entities.Subject;
 import com.example.studentdiary.R;
 
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.RootContext;
 
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -38,33 +39,53 @@ public class MarkAdapter extends RecyclerViewAdapterBase<Mark,MarkHolder> implem
     }
 
     @Override
-    public void onClick(View v) {
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
+    public void onClick(final View v) {
+       /* AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
 // ...Irrelevant code for customizing the buttons and title
         LayoutInflater inflater = LayoutInflater.from(context);
         View dialogView = inflater.inflate(R.layout.edit_mark, null);
         dialogBuilder.setView(dialogView);
-        dialogBuilder.setNeutralButton("Delete", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
+        final EditText editMark = (EditText) dialogView.findViewById(R.id.edit_mark);
+        final DatePicker datePicker = (DatePicker) dialogView.findViewById(R.id.edit_mark_date);
         dialogBuilder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                Mark mark = new Mark();
+                mark.setMark(editMark.getText().toString());
+                mark.setDate(getDateFromDatePicker(datePicker));
+                mark.setSubject(subjectId);
+                mark.save();
+                addItem(mark);
+                items.add(mark);
             }
         });
 
         AlertDialog alertDialog = dialogBuilder.create();
-        alertDialog.show();
+        alertDialog.show();*/
     }
     public void setItems(List<Mark> marks){
         items = marks;
-        if (items.isEmpty()){
-            items.add(new Mark(new Date(),"A",new Subject()));
-        }
         notifyDataSetChanged();
+    }
+
+    public void deleteItem(int pos){
+        Mark mark = items.get(pos);
+        items.remove(pos);
+        mark.delete();
+    }
+    public void addItem(Mark mark){
+        items.add(mark);
+        notifyDataSetChanged();
+    }
+
+    public  java.util.Date getDateFromDatePicker(DatePicker datePicker){
+        int day = datePicker.getDayOfMonth();
+        int month = datePicker.getMonth();
+        int year =  datePicker.getYear();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day);
+
+        return calendar.getTime();
     }
 }

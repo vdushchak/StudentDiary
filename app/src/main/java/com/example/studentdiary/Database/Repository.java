@@ -2,9 +2,9 @@ package com.example.studentdiary.Database;
 
 import com.activeandroid.query.Select;
 import com.example.studentdiary.Entities.Homework;
+import com.example.studentdiary.Entities.Mark;
 import com.example.studentdiary.Entities.Subject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +25,9 @@ public class Repository {
     }
     public static List<Homework> getHomework(long subjectId){
         return new Select().from(Homework.class).where("subject=?",subjectId).execute();
+    }
+    public static List<Mark> getMarks(long subjectId){
+        return new Select().from(Mark.class).where("subject=?",subjectId).execute();
     }
     public static Subject getSubject(long subjectId){
         return new Select().from(Subject.class).where("id=?",subjectId).executeSingle();

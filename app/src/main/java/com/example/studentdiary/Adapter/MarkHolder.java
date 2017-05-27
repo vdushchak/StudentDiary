@@ -8,7 +8,6 @@ import com.example.studentdiary.Entities.Mark;
 import com.example.studentdiary.R;
 
 import org.androidannotations.annotations.EViewGroup;
-import org.androidannotations.annotations.RootContext;
 import org.androidannotations.annotations.ViewById;
 
 /**

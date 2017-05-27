@@ -5,6 +5,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
@@ -14,7 +15,6 @@ import com.example.studentdiary.Adapter.HomeworkAdapter;
 import com.example.studentdiary.Database.Repository;
 import com.example.studentdiary.Entities.Homework;
 import com.example.studentdiary.Entities.Subject;
-import com.example.studentdiary.R;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
@@ -23,7 +23,6 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,6 +44,18 @@ public class HomeworkActivity extends AppCompatActivity {
         homework_list.setLayoutManager(new LinearLayoutManager(this));
         homework_list.setAdapter(adapter);
         adapter.setItems(homeworkList);
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                //do nothing, we only care about swiping
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                adapter.deleteItem(viewHolder.getAdapterPosition());
+            }
+        }).attachToRecyclerView(homework_list);
     }
     @Click
     public void addHomework(){

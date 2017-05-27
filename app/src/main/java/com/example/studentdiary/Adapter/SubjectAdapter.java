@@ -74,18 +74,19 @@ public class SubjectAdapter extends RecyclerViewAdapterBase<Subject,SubjectHolde
     @Override
     public void onClick(View v) {
         if (isClickableContent){
-            int pos = (int) v.getTag();
+            final int pos = (int) v.getTag();
             final Subject subject = items.get(pos);
             AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
 // ...Irrelevant code for customizing the buttons and title
             LayoutInflater inflater = LayoutInflater.from(context);
             View dialogView = inflater.inflate(R.layout.subject_editor, null);
             dialogBuilder.setView(dialogView);
+
             FloatingActionButton editSubject = (FloatingActionButton) dialogView.findViewById(R.id.edit_subject);
             editSubject.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    openSubjectEditDialog();
+                    openSubjectEditDialog(pos);
                 }
             });
             FloatingActionButton editHomeworks = (FloatingActionButton) dialogView.findViewById(R.id.edit_homework);
@@ -99,10 +100,16 @@ public class SubjectAdapter extends RecyclerViewAdapterBase<Subject,SubjectHolde
             editMarks.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MarkActivity_.intent(context).start();
+                    MarkActivity_.intent(context).subjectId(subject.getId()).start();
                 }
             });
-
+            if (subject.getId()==null){
+                editHomeworks.setEnabled(false);
+                editMarks.setEnabled(false);
+            } else {
+                editHomeworks.setEnabled(true);
+                editMarks.setEnabled(true);
+            }
             AlertDialog alertDialog = dialogBuilder.create();
             alertDialog.show();
         } else {
@@ -120,10 +127,17 @@ public class SubjectAdapter extends RecyclerViewAdapterBase<Subject,SubjectHolde
     public void deleteItem(int pos){
         Subject s = items.get(pos);
         items.remove(pos);
-        s.delete();
-        notifyItemRemoved(pos);
+        if (s!=null && s.getId()!=null) {
+            s.delete();
+            notifyItemRemoved(pos);
+        }
+        if (items.isEmpty()){
+            items.add(new Subject());
+            notifyDataSetChanged();
+        }
     }
-    public void openSubjectEditDialog(){
+    public void openSubjectEditDialog(int pos){
+        Subject thisSubject = items.get(pos);
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
 // ...Irrelevant code for customizing the buttons and title
         LayoutInflater inflater = LayoutInflater.from(context);

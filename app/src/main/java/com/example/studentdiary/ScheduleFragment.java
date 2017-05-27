@@ -1,32 +1,22 @@
 package com.example.studentdiary;
 
 
-
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.example.studentdiary.Adapter.SubjectAdapter;
 import com.example.studentdiary.Database.Repository;
 import com.example.studentdiary.Entities.Subject;
 
-import org.androidannotations.annotations.AfterExtras;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
 
@@ -45,30 +35,34 @@ public class ScheduleFragment extends Fragment {
     SubjectAdapter adapter;
     @FragmentArg
     boolean clickableContent = false;
+
     @AfterViews
-    public void getSchedule(){
+    public void getSchedule() {
         List<Subject> daySchedule = Repository.getSchedule(day);
         adapter.setClickable(clickableContent);
         adapter.setDay(day);
         schedule.setLayoutManager(new LinearLayoutManager(getActivity()));
         schedule.setAdapter(adapter);
         adapter.setList(daySchedule);
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-            @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-                //do nothing, we only care about swiping
-                return false;
-            }
-            @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
-               adapter.deleteItem(viewHolder.getAdapterPosition());
-            }
-        }).attachToRecyclerView(schedule);
+        if (clickableContent) {
+            new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+                @Override
+                public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                    //do nothing, we only care about swiping
+                    return false;
+                }
+
+                @Override
+                public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                    adapter.deleteItem(viewHolder.getAdapterPosition());
+                }
+            }).attachToRecyclerView(schedule);
+        }
     }
 
     @Click(R.id.schedule)
     public void onClick(View v) {
-        Log.d("mytag","click");
-        Snackbar.make(schedule,"New Subject",Snackbar.LENGTH_SHORT).show();
+        Log.d("mytag", "click");
+        Snackbar.make(schedule, "New Subject", Snackbar.LENGTH_SHORT).show();
     }
 }
